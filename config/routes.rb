@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
   
-  resources :pages
+  # resources :pages
 
   get 'pages/add', to: 'pages#new'
   get 'pages/:id/edit', to: 'pages#edit'
@@ -9,5 +9,4 @@ Rails.application.routes.draw do
   get '/add', to: 'pages#new'
   post 'pages', to: 'pages#create'
   get 'pages/:id', to: 'pages#show'
-
 end

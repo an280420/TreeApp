@@ -21,6 +21,7 @@ gem 'ancestry'
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development do
