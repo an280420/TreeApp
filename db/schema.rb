@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_084911) do
+ActiveRecord::Schema.define(version: 2021_12_04_111528) do
 
   create_table "pages", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_12_04_084911) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_pages_on_ancestry"
     t.index ["name"], name: "index_pages_on_name"
   end
 
