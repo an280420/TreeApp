@@ -12,7 +12,7 @@
 
   <body>
     <div class='container'>
-      <header class="p-3 bg-black text-white">
+      <header class="p-3 mb-5 bg-black text-white">
         <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-center mb-md-0">
             <li><%= link_to 'Home', root_path, class: 'nav-link px-2' %></li>
@@ -20,6 +20,10 @@
           </ul>
         </nav>
       </header>
+
+      <% flash.each do |key, v| %>
+        <%= tag.div v, class: "alert alert-#{key}", role: 'alert' %>
+      <% end %>
 
       <%= yield %>
     </div>
