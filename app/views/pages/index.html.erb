@@ -1,1 +1,10 @@
-<%= render plain: @pages %>
+<h1>Pages</h1>
+
+<%#= @pages.inspect %>
+<hr>
+
+<% @pages.each do |page| %>
+  <%= page.name %> |
+  <%= page.title %> |
+  <%= page.body %> </br>
+<% end %>
