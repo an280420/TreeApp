@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   root 'pages#index'
   
-  # resources :pages
-
-  get 'pages/add', to: 'pages#new'
-  get 'pages/:id/edit', to: 'pages#edit'
-  post 'pages/:id', to: 'pages#update'
-  get '/add', to: 'pages#new'
+  get 'add', to: 'pages#new'
   post 'pages', to: 'pages#create'
-  get 'pages/:id', to: 'pages#show'
+  get ':name', to: 'pages#show'
+  get ':name/edit', to: 'pages#edit'
+  patch ':name', to: 'pages#update'
+
+  get '*page_path/:name/edit', to: 'pages#edit'
+  patch '*page_path/:name', to: 'pages#update'
+  get '*page_path/:name/add', to: 'pages#new'
+  get '*page_path/:name', to: 'pages#show'
 end

@@ -1,10 +1,7 @@
 <h1>Pages</h1>
 
-<%= @pages.inspect %>
-<hr>
-
-<% @pages.each do |page| %>
-  <%= page.name %> |
-  <%= page.title %> |
-  <%= page.body %> </br>
-<% end %>
+  <%@root_pages.each do |page|  %>
+    <%= link_to page.name, page.name %>
+    <%= render 'tree', page: page %>
+  <% end %>
+</nav>

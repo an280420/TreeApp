@@ -1,19 +1,25 @@
 class PagesController < ApplicationController
+  before_action :set_page, only: %i[edit update show]
+  before_action :parent, only: %i[new create]
+
   def index
     @pages = Page.all
+    @root_pages = Page.roots
   end
 
   def edit
-    @page = Page.find params[:id]
+    # render plain: params
+    @params = params
   end
 
   def new
     @page = Page.new
+    @page.parent = parent
   end
 
   def create
-    # render plain: params
     @page = Page.new page_params
+    @page.parent = parent
     if @page.save
       flash[:success] = 'Страница успешно создана!'
       redirect_to root_path
@@ -23,18 +29,15 @@ class PagesController < ApplicationController
   end
 
   def update
-    @page = Page.find params[:id]
     if @page.update page_params_update
       flash[:success] = 'Страница успешно обновлена!'
-      redirect_to page_path
+      redirect_to 'root'
     else
       render :edit
     end
   end
 
-
   def show
-    @page = Page.find params[:id]
   end
 
   private
@@ -45,5 +48,13 @@ class PagesController < ApplicationController
 
   def page_params_update
     params.require(:page).permit(:title, :body)
+  end
+
+  def parent
+    parent = @page
+  end
+
+  def set_page
+    @page = Page.find_by(name: params[:name])
   end
 end

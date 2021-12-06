@@ -1,0 +1,8 @@
+</br>
+<% if page.children? %>
+  <% page.children.each do |children| %>
+    <%= "---"*children.ancestor_ids.count%>
+    <%= link_to children.name, "#{ancestry_path(children)}" %>
+    <%= render 'tree', page: children %>
+  <% end %>
+<% end %>
