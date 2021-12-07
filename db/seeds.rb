@@ -9,6 +9,10 @@ puts "Destroyed everything you touch"
   puts "created Page with title: '#{page.title}'"
 end
 
+first_page = Page.first
+first_page.body = first_page.body + " <p><b>This is bold text</b></p> <p><i>This is cursive text</i></p>"
+first_page.save
+
 # create page tree
 parents = [nil, 0, 1, 2, 0, 4, 5, nil, nil, nil]
 page_ids = Page.ids 
