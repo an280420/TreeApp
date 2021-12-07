@@ -1,7 +1,4 @@
-<h1>Pages</h1>
+<h1 class="mb-3">Pages</h1>
 
-  <%@root_pages.each do |page|  %>
-    <%= link_to page.name, page.name %>
-    <%= render 'tree', page: page %>
-  <% end %>
-</nav>
+<%= nested_pages @pages.arrange(order: :name) %>
+

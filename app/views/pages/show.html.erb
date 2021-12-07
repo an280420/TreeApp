@@ -2,8 +2,10 @@
 
 <div class="lead my-3"><%= sanitize @page.body %></div>
 
-<%= render 'tree', page: @page %>
+<%= nested_pages @pages.arrange(order: :name) %>
 
-<%= link_to 'Edit page', "#{@page.name}/edit", class: 'btn btn-secondary mt-5' %>
+<%= link_to 'Edit page', "/#{page_path(@page)}/edit", class: 'btn btn-secondary mt-5' %>
 
-<%= link_to 'Add page', "#{@page.name}/add", class: 'btn btn-secondary mt-5' %>
+<%#= link_to 'Add page', new_page_path(parent_id: @page), class: 'btn btn-secondary mt-5' %>
+<%= link_to 'Add page', "/#{page_path(@page)}/add", class: 'btn btn-secondary mt-5' %>
+

@@ -1,6 +1,11 @@
 <h1>Add Page</h1>
 
-<%= form_with model: @page do |f| %>
+<%= params %> <br>
+<%= @parent_id %>
+
+<%= form_with model: @page, url: "/#{page_path(@page)}" do |f| %>
+  <%= f.hidden_field :parent_id %>
+  
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :name %>
