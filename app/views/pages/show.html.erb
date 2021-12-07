@@ -1,9 +1,23 @@
-<h1 class="mb-4"><%= @page.title %></h1>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title"><%= @page.title %></h2>
+        <p class="card-text"><%= sanitize @page.body %></p>
 
-<div class="lead my-3"><%= sanitize @page.body %></div>
+        <%= link_to 'Edit page', "/#{page_path(@page)}/edit", class: 'btn btn-secondary mt-5' %>
 
-<%= nested_pages @pages.arrange(order: :name) %>
-
-<%= link_to 'Edit page', "/#{page_path(@page)}/edit", class: 'btn btn-secondary mt-5' %>
-
-<%= link_to 'Add page', "/#{page_path(@page)}/add", class: 'btn btn-secondary mt-5' %>
+        <%= link_to 'Add page', "/#{page_path(@page)}/add", class: 'btn btn-secondary mt-5' %>
+       
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Child pages</h5>
+        <%= nested_pages @pages.arrange(order: :name) %>
+      </div>
+    </div>
+  </div>
+</div>
