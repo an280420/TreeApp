@@ -1,8 +1,5 @@
 <h1>Add Page</h1>
 
-<%= params %> <br>
-<%= @parent_id %>
-
 <%= form_with model: @page, url: "/#{page_path(@page)}" do |f| %>
   <%= f.hidden_field :parent_id %>
   

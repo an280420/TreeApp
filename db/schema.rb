@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_12_04_111528) do
 
   create_table "pages", force: :cascade do |t|
-    t.string "name", null: false
+    t.string 'name', null: false
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
