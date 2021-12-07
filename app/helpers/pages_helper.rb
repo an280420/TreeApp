@@ -4,31 +4,34 @@ module PagesHelper
     page.path.pluck(:name).join('/')
   end
 
+  # build tree structure from model page
   def nested_pages(pages)
     pages.map do |page, sub_pages|
       render(page) + content_tag(:div, nested_pages(sub_pages), class: "nested_pages")
     end.join.html_safe
   end
 
-  # B_MASK replacement will match the link part of the LINK_MASK, so links tag should match before bold tag
+  # formating text with caston tags to text with html tags
+  # castom tag: **string** => html tag: <b>string</b>
+  # castom tag: \\string\\ => html tag: <i>string</i>
   def plain_to_html(text)
-    b_mask = /(\[)(.*?)(\])/s
-    i_mask = /(\\\\)(.*?)(\\\\)/s
-    link_mask = /(\(\()(.*?) (\[(.*?)\])(\)\))/s
+    b_mask = /(\*{2})(.*?)(\*{2})/
+    i_mask = /(\\\\)(.*?)(\\\\)/
+    link_mask = /(\(\()(.*?) (\[(.*?)\])(\)\))/
 
     text = text.gsub(link_mask) { "<a href=\"#{Regexp.last_match(2)}\">#{Regexp.last_match(4)}</a>" }
     text = text.gsub(b_mask) { "<b>#{Regexp.last_match(2)}</b>" }
     text.gsub(i_mask) { "<i>#{Regexp.last_match(2)}</i>" }
   end
 
-  # Will replace HTML tags with custom tag application
+  # formating text with html tags to text with castom tags
   def html_to_plain(text)
-    html_b_mask = %r{(<b>)(.*?)(</b>)}s
-    html_i_mask = %r{(<i>)(.*?)(</i>)}s
-    html_link_mask = %r{(<a href=\")(.*?)(\">)(.*?)(</a>)}s
+    b_tag = %r{(<b>)(.*?)(</b>)}s
+    i_tag = %r{(<i>)(.*?)(</i>)}s
+    link_tag = %r{(<a href=\")(.*?)(\">)(.*?)(</a>)}s
 
-    text = text.gsub(html_link_mask) { "((#{Regexp.last_match(2)} [#{Regexp.last_match(4)}]))" }
-    text = text.gsub(html_b_mask) { "[#{Regexp.last_match(2)}]" }
-    text.gsub(html_i_mask) { "\\\\#{Regexp.last_match(2)}\\\\" }
+    text = text.gsub(link_tag) { "((#{Regexp.last_match(2)} [#{Regexp.last_match(4)}]))" }
+    text = text.gsub(b_tag) { "**#{Regexp.last_match(2)}**" }
+    text.gsub(i_tag) { "\\\\#{Regexp.last_match(2)}\\\\" }
   end
 end

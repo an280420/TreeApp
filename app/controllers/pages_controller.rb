@@ -14,10 +14,12 @@ class PagesController < ApplicationController
   end
   
   def edit
+    @page.body = html_to_plain(@page.body)
   end
 
   def create
     @page = Page.new page_params
+    @page.body = plain_to_html(@page.body)
     if @page.save
       flash[:success] = 'Страница успешно создана!'
       redirect_to "/#{page_path(@page)}"
@@ -28,6 +30,8 @@ class PagesController < ApplicationController
 
   def update
     if @page.update page_params_update
+      @page.body = plain_to_html(@page.body)
+      @page.save
       flash[:success] = 'Страница успешно обновлена!'
       redirect_to "/#{page_path(@page)}"
     else
