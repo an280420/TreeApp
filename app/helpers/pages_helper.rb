@@ -7,7 +7,7 @@ module PagesHelper
   # build tree structure from model page
   def nested_pages(pages)
     pages.map do |page, sub_pages|
-      render(page) + content_tag(:div, nested_pages(sub_pages), class: "nested_pages")
+      render(page) + content_tag(:div, nested_pages(sub_pages), class: 'nested_pages')
     end.join.html_safe
   end
 

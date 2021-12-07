@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     # render plain: params
     @page = Page.new(parent_id: @parent_id)
   end
-  
+
   def edit
     @page.body = html_to_plain(@page.body)
   end
