@@ -11,6 +11,11 @@ class PagesController < ApplicationController
   def new
     # render plain: params
     @page = Page.new(parent_id: @parent_id)
+    if @parent_id
+      render :new
+    else
+      render :new_root
+    end
   end
 
   def edit
@@ -22,7 +27,7 @@ class PagesController < ApplicationController
     @page.body = plain_to_html(@page.body)
     if @page.save
       flash[:success] = 'Страница успешно создана!'
-      redirect_to "/#{page_path(@page)}"
+      redirect_to build_page_path(@page)
     else
       render :new
     end
@@ -33,7 +38,7 @@ class PagesController < ApplicationController
       @page.body = plain_to_html(@page.body)
       @page.save
       flash[:success] = 'Страница успешно обновлена!'
-      redirect_to "/#{page_path(@page)}"
+      redirect_to page_path
     else
       render :edit
     end
@@ -54,8 +59,8 @@ class PagesController < ApplicationController
   end
 
   def set_page
-    page_path = params[:page_path]
-    name_page = page_path.split('/').last
+    _page_path = params[:page_path]
+    name_page = _page_path.split('/').last
     @page = Page.find_by(name: name_page)
   end
 

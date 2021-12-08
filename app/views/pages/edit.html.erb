@@ -1,6 +1,6 @@
 <h1>Edit Page</h1>
 
-<%= form_with model: @page, method: :patch, url: "/#{page_path(@page)}" do |f| %>
+<%= form_with model: @page, method: :patch, url: page_path do |f| %>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :name %>

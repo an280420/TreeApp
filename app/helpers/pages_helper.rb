@@ -1,7 +1,7 @@
 module PagesHelper
-  def page_path(*page)
+  def build_page_path(*page)
     page = page[0] if page.instance_of? Array
-    page.path.pluck(:name).join('/')
+    "/#{page.path.pluck(:name).join('/')}"
   end
 
   # build tree structure from model page

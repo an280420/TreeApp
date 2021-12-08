@@ -5,9 +5,9 @@
         <h2 class="card-title"><%= @page.title %></h2>
         <p class="card-text"><%= sanitize @page.body %></p>
 
-        <%= link_to 'Edit page', "/#{page_path(@page)}/edit", class: 'btn btn-secondary mt-5' %>
+        <%= link_to 'Edit page', edit_page_path, class: 'btn btn-secondary mt-5' %>
 
-        <%= link_to 'Add page', "/#{page_path(@page)}/add", class: 'btn btn-secondary mt-5' %>
+        <%= link_to 'Add page', new_page_path, class: 'btn btn-secondary mt-5' %>
        
       </div>
     </div>
