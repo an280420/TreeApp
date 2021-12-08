@@ -1,14 +1,13 @@
 FactoryBot.define do
-  # Название фабрики (page)
   factory :page do
-    name =%w[name страница page]
+    name_pages = %w[name страница page]
 
-    sequence(:name) { |n| "#{name.sample}#{n}?" }
+    sequence(:name) { |n| "#{name_pages.sample}#{n}" }
 
-    title { Faker::Hipster.sentence(word_count: 1) }
+    sequence(:title) { |n| "Заголовок №#{n}" }
 
     body { Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4) }
 
-    association :page, as: :ancestry
+    # association :page, as: :ancestry
   end
 end

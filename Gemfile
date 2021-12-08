@@ -20,7 +20,7 @@ gem 'turbolinks', '~> 5'
 gem 'ancestry'
 
 group :development, :test do
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
