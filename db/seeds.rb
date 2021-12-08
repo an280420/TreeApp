@@ -4,7 +4,11 @@ Page.destroy_all
 puts 'Destroyed everything you touch'
 
 10.times do |i|
-  name = "name#{i + 1}"
+  name =  if i < 9
+            "name#{i + 1}"
+          else
+            "Страница#{i + 1}"
+          end
   title = Faker::Hipster.sentence(word_count: 2)
   body = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4)
   page = Page.create! name: name, title: title, body: body
