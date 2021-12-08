@@ -61,5 +61,5 @@ http://localhost:3000/
 Для запуска тестов
 
 ```
-rails exec rspec
+bundle exec rspec
 ```
